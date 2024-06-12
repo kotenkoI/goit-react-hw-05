@@ -1,42 +1,35 @@
+import { Formik, Form, Field } from "formik";
 import toast, { Toaster } from "react-hot-toast";
+import css from "./SearchBar.module.css"
 
-import css from "./SearchBar.module.css";
+export default function SearchBar({ onSubmit }) {
+    
+    const notifyEmpty = () => toast("Please, enter something on the searching field")
+    
+    const initialValues = { query: "" }
 
-export default function SearchBar({ onSearch }) {
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    const form = evt.target;
-    const searchImg = form.elements.searchImg.value;
-
-    if (searchImg.trim() === "") {
-      toast("Please fill in search folder", {
-        style: {
-          color: 'red',   
-        },
-      });
-      return;
-    }
-
-    onSearch(searchImg);
-    form.reset();
-  };
-
-  return (
-    <header className={css.header}>
-      <form className={css.form} onSubmit={handleSubmit}>
-        <input
-          className={css.input}
-          type="text"
-          name="searchImg"
-           autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-        />
-        <button className={css.btn} type="submit">
-          Search
-        </button>
-        <Toaster />
-      </form>
-    </header>
-  );
+    return (
+        <div>
+            <Formik initialValues={initialValues} onSubmit={(values, actions) => {
+                if (values.query.trim() === "") {
+                    notifyEmpty()
+                } else {
+                    onSubmit(values.query)
+                }
+                actions.resetForm()
+            }}>
+                <Form className={css.form}>
+                    <Field
+                        className={css.input}
+                        type="text"
+                        name="query"
+                        autoComplete="off"
+                        autoFocus
+                        placeholder="Search movies"/>
+                    <button className={css.button} type="submit">Search</button>
+                    <Toaster toastOptions={{style: {background: "#e9a8a8", color: "black"}}}/>
+                </Form>
+            </Formik>
+        </div>
+    )
 }

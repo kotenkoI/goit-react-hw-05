@@ -1,35 +1,36 @@
-.header{
-    background-color: rgb(75, 158, 129);
-    margin: 0;
-    display: block;
-   
-}
 
-.form{
+.form {
     display: flex;
-    justify-content: center;    
-    padding: 10px;
-    gap: 10px;  
+    flex-direction: row;
+    gap: 20px;
 }
 
-.input{
-    padding: 10px;
-    color: black;
-    font-size: medium;
-    font-weight: 400;
-    border: none;
-    border-radius: 5px;
+.input {
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 10px 15px;
+    box-shadow: 0px 8px 20px 0px rgb(113, 158, 127);
+    background-color: transparent;
 }
 
-.btn{
-    display: flex;
-    border: 1px solid black;
-    border-radius: 8px;
-    background-color: rgb(2, 99, 109);
-    color: white;
-    padding: 10px;
-    font-weight: 500;
-    font-size: medium;
-  justify-content: center;
+input::placeholder {
+    color: rgb(125, 245, 201);
+    font-family: 'Briem Hand', sans-serif;
+}
 
+input:hover {
+    color: rgb(171, 218, 186);
+    filter: drop-shadow(5px 5px 5px rgb(126, 172, 139));
+}
+
+.button {
+     color: rgb(125, 245, 201);
+    box-shadow: 0px 8px 20px 0px rgb(171, 218, 186);
+    padding: 4px 15px;
+    background-color: transparent;
+}
+
+.button:hover {
+    color: rgb(171, 218, 186);
+    filter: drop-shadow(5px 5px 5px rgb(158, 207, 170));
 }
